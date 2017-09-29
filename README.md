@@ -35,12 +35,78 @@ console.log(result);
 */
 ```
 
-## Why would you want to convert an js object in plain string ?
-
-
-`JSON.stringify`
 ```js
+const convert = require('object-plain-string');
 const obj = {
-  
+    function1: function(){
+        for(let i=0; i<10; i++){
+            console.log(i);
+        }
+    },
+    function2: value => alert(value),
+    call: "~!~alert('Hey!')",
+    newClass: "~!~new String('Hey!')",
+    array: [1,2,3,4,"test", 5],
+    array2: [1,2,3,4, { key1: "First key", key2: "Second key" }],
+    regex: "~!~/.*/"
 };
+
+const result = convert(obj);
+console.log(result);
+/*
+"{
+    function1: function (){
+        for(let i=0; i<10; i++){
+            console.log(i);
+        }
+    },
+    function2: value => alert(value),
+    call: alert('Hey!'),
+    newClass: new String('Hey!'),
+    array: [1,2,3,4,'test',5,],
+    array2: [1,2,3,4,{
+        key1: 'First key',
+        key2: 'Second key',
+    },],
+    regex: /.*/,
+}"
+*/
+```
+### Why would you use `object-plain-string` instead of `JSON.stringify`?
+Well, it depends on what you want to achieve, for example if you want to write javascript config files you may want to use `object-plain-string` instead of `JSON.stringify`
+
+#### `JSON.stringify` vs `object-plain-string`
+```js
+const convert = require('object-plain-string');
+
+const obj = {
+    a: 'Some text',
+    b: ()=>{
+        console.log('something');
+    },
+    c: [1,2,{a:'Something'},3,4]
+};
+
+console.log(JSON.stringify(obj));
+/*
+{
+    "a":"Some text",
+    "c":[1,2,{"key":"Something"},3,4]
+}
+*/
+
+console.log(convert(obj));
+/*
+"{
+    a: 'Some text',
+    b: ()=>{
+        console.log('something');
+    }
+    c: [1,2,{
+        key: 'Something',
+    },3,4,],
+},"
+
+*/
+
 ```
