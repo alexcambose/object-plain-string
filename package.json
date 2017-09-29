@@ -1,6 +1,6 @@
 {
-  "name": "object-to-string",
-  "version": "1.0.0",
+  "name": "object-plain-string",
+  "version": "1.0.1,
   "description": "Convert javascript objects into strings",
   "main": "index.js",
   "scripts": {
@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/alexcambose/object-to-string.git"
+    "url": "git+https://github.com/alexcambose/object-plain-string.git"
   },
   "keywords": [
     "object",
@@ -19,7 +19,7 @@
   "author": "Alexandru Cambose",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/alexcambose/object-to-string/issues"
+    "url": "https://github.com/alexcambose/object-plain-string/issues"
   },
-  "homepage": "https://github.com/alexcambose/object-to-string#readme"
+  "homepage": "https://github.com/alexcambose/object-plain-string#readme"
 }
