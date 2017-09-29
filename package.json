@@ -1,6 +1,6 @@
 {
   "name": "object-plain-string",
-  "version": "1.0.1,
+  "version": "1.0.1",
   "description": "Convert javascript objects into strings",
   "main": "index.js",
   "scripts": {
