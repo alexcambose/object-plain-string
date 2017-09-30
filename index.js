@@ -19,13 +19,18 @@ const handleArray = (array) => {
     let text = "";
     //loop in each array item
     for (let item of array) {
-        //if is a deep array recall
-        if (Array.isArray(item)) {
+        if(item instanceof RegExp){
+            text += item + ',';
+
+            //if is a deep array recall
+        } else if (Array.isArray(item)) {
             text += `[${handleArray(item)}],`;
+
             //if is an object
         } else if (typeof item === 'object') {
             const string = c(item);
             //remove last comma
+
             text += string.substring(0, string.length - 1) + ",";
         } else if (typeof item === 'string') {
             //if is plain text
@@ -46,8 +51,11 @@ const c = (object, level = 0) => {
     for (let key of Object.keys(object)) {
         text += pressTab(`${key}: `, level);
 
-        //if is object {}
-        if (typeof object[key] === 'object' && !Array.isArray(object[key])) {
+        if(object[key] instanceof RegExp) {
+            text += object[key] + ',';
+
+            //if is object {}
+        }else if (typeof object[key] === 'object' && !Array.isArray(object[key])) {
             text += c(object[key], level);
 
             //if is object array []
@@ -77,5 +85,5 @@ const c = (object, level = 0) => {
 
 module.exports = object => {
     const result = c(object);
-    return result.substring(0, result.length-1);
+    return result.substring(0, result.length - 1);
 };

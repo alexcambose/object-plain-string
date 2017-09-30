@@ -1,25 +1,53 @@
 {
-  "name": "object-plain-string",
-  "version": "1.0.1",
+  "_from": "object-plain-string",
+  "_id": "object-plain-string@1.0.2",
+  "_inBundle": false,
+  "_integrity": "sha512-JsW9N/mWTbruUeBm/y9TCyNnv8Likt+3rhgIOwCaLvBASy+DookcHDgeJQMqi1cICnUI11rVzxDx9WsMHrOVfA==",
+  "_location": "/object-plain-string",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "tag",
+    "registry": true,
+    "raw": "object-plain-string",
+    "name": "object-plain-string",
+    "escapedName": "object-plain-string",
+    "rawSpec": "",
+    "saveSpec": null,
+    "fetchSpec": "latest"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/object-plain-string/-/object-plain-string-1.0.2.tgz",
+  "_shasum": "1a6fcaba8252460c8e7e75b7a758522d15434047",
+  "_spec": "object-plain-string",
+  "_where": "/home/alex/Desktop/vacanta/test",
+  "author": {
+    "name": "Alexandru Cambose"
+  },
+  "bugs": {
+    "url": "https://github.com/alexcambose/object-plain-string/issues"
+  },
+  "bundleDependencies": false,
+  "deprecated": false,
   "description": "Convert javascript objects into strings",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/alexcambose/object-plain-string.git"
-  },
+  "homepage": "https://github.com/alexcambose/object-plain-string#readme",
   "keywords": [
     "object",
     "string",
     "convert",
     "JSON"
   ],
-  "author": "Alexandru Cambose",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/alexcambose/object-plain-string/issues"
+  "license": "MIT",
+  "main": "index.js",
+  "name": "object-plain-string",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alexcambose/object-plain-string.git"
   },
-  "homepage": "https://github.com/alexcambose/object-plain-string#readme"
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "version": "1.0.2"
 }

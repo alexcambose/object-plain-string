@@ -48,7 +48,7 @@ const obj = {
     newClass: "~!~new String('Hey!')",
     array: [1,2,3,4,"test", 5],
     array2: [1,2,3,4, { key1: "First key", key2: "Second key" }],
-    regex: "~!~/.*/"
+    regex: /\.css$/
 };
 
 const result = convert(obj);
@@ -68,8 +68,9 @@ console.log(result);
         key1: 'First key',
         key2: 'Second key',
     },],
-    regex: /.*/,
+    regex: /\.css$/,
 }"
+*/
 ```
 ### Why would you use `object-plain-string` instead of `JSON.stringify`?
 Well, it depends on what you want to achieve, for example if you want to write javascript config files you may want to use `object-plain-string` instead of `JSON.stringify`
