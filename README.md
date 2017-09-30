@@ -46,6 +46,7 @@ const obj = {
     function2: value => alert(value),
     call: "~!~alert('Hey!')",
     newClass: "~!~new String('Hey!')",
+    bool: true,
     array: [1,2,3,4,"test", 5],
     array2: [1,2,3,4, { key1: "First key", key2: "Second key" }],
     regex: /\.css$/
@@ -63,6 +64,7 @@ console.log(result);
     function2: value => alert(value),
     call: alert('Hey!'),
     newClass: new String('Hey!'),
+    bool: true,
     array: [1,2,3,4,'test',5,],
     array2: [1,2,3,4,{
         key1: 'First key',
