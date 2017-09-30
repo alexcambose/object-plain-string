@@ -19,10 +19,11 @@ const handleArray = (array) => {
     let text = "";
     //loop in each array item
     for (let item of array) {
+        //handle regex
         if(item instanceof RegExp){
             text += item + ',';
 
-            //if is a deep array recall
+        //if is a deep array recall
         } else if (Array.isArray(item)) {
             text += `[${handleArray(item)}],`;
 
@@ -30,11 +31,13 @@ const handleArray = (array) => {
         } else if (typeof item === 'object') {
             const string = c(item);
             //remove last comma
-
             text += string.substring(0, string.length - 1) + ",";
         } else if (typeof item === 'string') {
             //if is plain text
             text += parseText(item);
+            //boolean
+        } else if(typeof item === 'boolean'){
+            text += item + ',';
         } else {
             //if is integer
             text += item + ',';
@@ -73,6 +76,9 @@ const c = (object, level = 0) => {
             //replace <tab> with ' ' so the whitespaces will be preserved
             text += object[key].toString() + ',';
 
+            //boolean
+        } else if(typeof object[key] === 'boolean'){
+            text += object[key] + ',';
             //if is string "..." or function call "~!~foo(...)"
         } else {
             text += parseText(object[key]);
