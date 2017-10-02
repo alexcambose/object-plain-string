@@ -1,6 +1,6 @@
 const parseText = text => {
-    if (text.substring(0, 3) === "~!~")
-        return text.substring(3, text.length) + ",";
+    if (text.substring(0, 3) === '~!~')
+        return text.substring(3, text.length) + ',';
     else
         return `'${text}',`;
 };
@@ -8,20 +8,29 @@ const parseText = text => {
 const pressTab = (string, level) => {
     const lines = string.split('\n').map(line => {
         for (let i = 0; i < level; i++)
-            line = "    " + line;
+            line = '    ' + line;
         return line;
     });
 
     return lines.join('\n');
 };
+//function used to handle string, number, boolean, object(RegExp instance), null and undefined data types
+const simpleTypes = item => {
+    if(typeof item === 'string'){
+        return parseText(item);
+    } else if(typeof item === 'number' || typeof item === 'boolean' || item === null || item instanceof RegExp){
+        return item + ',';
+    }
+    return false;
+};
 
 const handleArray = (array) => {
-    let text = "";
+    let text = '';
     //loop in each array item
     for (let item of array) {
-        //handle regex
-        if(item instanceof RegExp){
-            text += item + ',';
+
+        if(simpleTypes(item)) {
+            text += simpleTypes(item);
 
         //if is a deep array recall
         } else if (Array.isArray(item)) {
@@ -31,16 +40,7 @@ const handleArray = (array) => {
         } else if (typeof item === 'object') {
             const string = c(item);
             //remove last comma
-            text += string.substring(0, string.length - 1) + ",";
-        } else if (typeof item === 'string') {
-            //if is plain text
-            text += parseText(item);
-            //boolean
-        } else if(typeof item === 'boolean'){
-            text += item + ',';
-        } else {
-            //if is integer
-            text += item + ',';
+            text += string.substring(0, string.length - 1) + ',';
         }
     }
 
@@ -52,10 +52,11 @@ const c = (object, level = 0) => {
     level++;
 
     for (let key of Object.keys(object)) {
-        text += pressTab(`${key}: `, level);
+        if(object[key] !== undefined) //ignore undefined values
+            text += pressTab(`${key}: `, level);
 
-        if(object[key] instanceof RegExp) {
-            text += object[key] + ',';
+        if(simpleTypes(object[key])) {
+            text += simpleTypes(object[key]);
 
             //if is object {}
         }else if (typeof object[key] === 'object' && !Array.isArray(object[key])) {
@@ -75,15 +76,9 @@ const c = (object, level = 0) => {
         } else if (typeof object[key] === 'function') {
             //replace <tab> with ' ' so the whitespaces will be preserved
             text += object[key].toString() + ',';
-
-            //boolean
-        } else if(typeof object[key] === 'boolean'){
-            text += object[key] + ',';
-            //if is string "..." or function call "~!~foo(...)"
-        } else {
-            text += parseText(object[key]);
         }
-        text += '\n';
+        if(object[key] !== undefined) //ignore adding \n to undefined values
+            text += '\n';
     }
     return text + pressTab('},', level - 1);
 };
