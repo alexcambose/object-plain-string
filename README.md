@@ -1,3 +1,5 @@
+[![Build Status via Travis CI](https://travis-ci.org/alexcambose/object-plain-string.svg?branch=master)](https://travis-ci.org/alexcambose/object-plain-string)
+
 # object-plain-string
 Convert javascript objects into strings
 
