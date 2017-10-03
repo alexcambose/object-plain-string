@@ -40,44 +40,67 @@ console.log(result);
 ```js
 const convert = require('object-plain-string');
 const obj = {
-    function1: function(){
-        for(let i=0; i<10; i++){
-            console.log(i);
-        }
+    key1: 'This is key1',
+    key2: 'This is key2',
+    integer: 123,
+    boolean: true,
+    array: [1,2,3,4],
+    func: function (){
+        //comment
+        console.log('this is a function');
     },
-    function2: value => alert(value),
-    call: "~!~alert('Hey!')",
-    newClass: "~!~new String('Hey!')",
-    bool: true,
-    array: [1,2,3,4,"test", 5],
-    array2: [1,2,3,4, { key1: "First key", key2: "Second key" }],
-    regex: /\.css$/
+    object: {
+        deep1: 'This is deep1',
+        deep2: 'This is deep2'
+    },
+    regex: /.css$/,
+    _undefined: undefined,
+    _null: null,
+}
+
+const result = convert(obj);
+console.log(result);
+/*
+"{
+    key1: 'This is key1',
+    key2: 'This is key2',
+    integer: 123,
+    boolean: true,
+    array: [1,2,3,4,],
+    func: function (){
+        //comment
+        console.log('this is a function');
+    },
+    object: {
+        deep1: 'This is deep1',
+        deep2: 'This is deep2',
+    },
+    regex: /.css$/,
+    _null: null,
+}"
+*/
+```
+
+`undefined` object key values will be ignored and `null` will be kept
+
+```js
+const obj = {
+  undefinedValue: undefined,
+  nullValue: null
 };
 
 const result = convert(obj);
 console.log(result);
 /*
 "{
-    function1: function (){
-        for(let i=0; i<10; i++){
-            console.log(i);
-        }
-    },
-    function2: value => alert(value),
-    call: alert('Hey!'),
-    newClass: new String('Hey!'),
-    bool: true,
-    array: [1,2,3,4,'test',5,],
-    array2: [1,2,3,4,{
-        key1: 'First key',
-        key2: 'Second key',
-    },],
-    regex: /\.css$/,
+  nullValue: null,
 }"
 */
 ```
+
+
 ### Why would you use `object-plain-string` instead of `JSON.stringify`?
-Well, it depends on what you want to achieve, for example if you want to write javascript config files you may want to use `object-plain-string` instead of `JSON.stringify`
+Well, it depends on what you want to achieve, for example if you want to write javascript config files you may want to use `object-plain-string` instead of `JSON.stringify`.
 
 #### `JSON.stringify` vs `object-plain-string`
 ```js
@@ -96,7 +119,8 @@ console.log(JSON.stringify(obj));
 {
     "a":"Some text",
     "c":[1,2,{"key":"Something"},3,4]
-}
+}.
+
 */
 
 console.log(convert(obj));
